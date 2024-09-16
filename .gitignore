@@ -1,5 +1,8 @@
 *.o
 *.a
+*main.log
+*main.obj
+*.tlog
 .cache/
 .coreml/
 .test/
