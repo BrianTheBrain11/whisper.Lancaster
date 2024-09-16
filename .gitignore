@@ -11,9 +11,12 @@
 .DS_Store
 .vimspector.json
 /CMakeSettings.json
-
 build/
 build-*/
+*.log
+*.obj
+
+
 
 # SPM
 .build/
@@ -55,3 +58,8 @@ whisper.dir/cmake-build-debug/
 .cxx/
 .gradle/
 whisper.dir/local.properties
+build_folder/examples/common.dir/Release/common.vcxproj.FileListAbsolute.txt
+build_folder/examples/main/main.dir/Release/main.vcxproj.FileListAbsolute.txt
+build_folder/ggml/src/ggml.dir/Release/ggml.vcxproj.FileListAbsolute.txt
+build_folder/src/whisper.dir/Release/whisper.vcxproj.FileListAbsolute.txt
+build_folder/x64/Release/ZERO_CHECK/ZERO_CHECK.vcxproj.FileListAbsolute.txt
