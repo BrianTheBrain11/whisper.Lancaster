@@ -15,7 +15,8 @@ build/
 build-*/
 *.log
 *.obj
-
+*.pbd
+*.ilk
 
 
 # SPM
@@ -63,3 +64,8 @@ build_folder/examples/main/main.dir/Release/main.vcxproj.FileListAbsolute.txt
 build_folder/ggml/src/ggml.dir/Release/ggml.vcxproj.FileListAbsolute.txt
 build_folder/src/whisper.dir/Release/whisper.vcxproj.FileListAbsolute.txt
 build_folder/x64/Release/ZERO_CHECK/ZERO_CHECK.vcxproj.FileListAbsolute.txt
+build_folder/x64/Debug/ZERO_CHECK/ZERO_CHECK.vcxproj.FileListAbsolute.txt
+build_folder/src/whisper.dir/Debug/whisper.vcxproj.FileListAbsolute.txt
+build_folder/ggml/src/ggml.dir/Debug/ggml.vcxproj.FileListAbsolute.txt
+build_folder/examples/main/main.dir/Debug/main.vcxproj.FileListAbsolute.txt
+build_folder/examples/common.dir/Debug/common.vcxproj.FileListAbsolute.txt
