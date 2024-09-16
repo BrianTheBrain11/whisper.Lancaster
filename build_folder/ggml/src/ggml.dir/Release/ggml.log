@@ -1,0 +1,14 @@
+﻿  Building Custom Rule G:/whisper.Lancaster/whisper.dir/ggml/src/CMakeLists.txt
+  ggml.c
+  ggml-alloc.c
+  ggml-backend.c
+  ggml-quants.c
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\assert.h(21,9): warning C4005: 'static_assert': macro redefinition
+  ggml-aarch64.c
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\assert.h(21,9): warning C4005: 'static_assert': macro redefinition
+  Generating Code...
+  Auto build dll exports
+     Creating library G:/whisper.Lancaster/build_folder/ggml/src/Release/ggml.lib and object G:/whisper.Lancaster/build_folder/ggml/src/Release/ggml.exp
+  ggml.vcxproj -> G:\whisper.Lancaster\build_folder\bin\Release\ggml.dll
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

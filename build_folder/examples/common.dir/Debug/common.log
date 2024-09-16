@@ -1,0 +1,7 @@
+﻿  Building Custom Rule G:/whisper.Lancaster/whisper.dir/examples/CMakeLists.txt
+  common.cpp
+G:\whisper.Lancaster\whisper.dir\examples\common.h(299,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  common-ggml.cpp
+  grammar-parser.cpp
+  Generating Code...
+  common.vcxproj -> G:\whisper.Lancaster\build_folder\examples\Debug\common.lib

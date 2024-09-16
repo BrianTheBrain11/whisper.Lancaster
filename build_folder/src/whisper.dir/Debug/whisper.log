@@ -1,0 +1,7 @@
+﻿  Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt
+  whisper.cpp
+  Auto build dll exports
+     Creating library G:/whisper.Lancaster/build_folder/src/Debug/whisper.lib and object G:/whisper.Lancaster/build_folder/src/Debug/whisper.exp
+  whisper.vcxproj -> G:\whisper.Lancaster\build_folder\bin\Debug\whisper.dll
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
