@@ -17,6 +17,7 @@ build-*/
 *.obj
 *.pbd
 *.ilk
+*models/
 
 
 # SPM
