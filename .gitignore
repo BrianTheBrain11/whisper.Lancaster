@@ -27,28 +27,28 @@ build-*/
 /server
 /lsp
 
-arm_neon.h
-sync.sh
-libwhisper.a
-libwhisper.so
-compile_commands.json
+whisper.dir/arm_neon.h
+whisper.dir/sync.sh
+whisper.dir/libwhisper.a
+whisper.dir/libwhisper.so
+whisper.dir/compile_commands.json
 
-examples/arm_neon.h
-examples/whisper.objc/whisper.objc.xcodeproj/xcshareddata
-examples/whisper.objc/whisper.objc.xcodeproj/xcuserdata/
-examples/whisper.objc/whisper.objc.xcodeproj/project.xcworkspace/xcuserdata
+whisper.dir/examples/arm_neon.h
+whisper.dir/examples/whisper.objc/whisper.objc.xcodeproj/xcshareddata
+whisper.dir/examples/whisper.objc/whisper.objc.xcodeproj/xcuserdata/
+whisper.dir/examples/whisper.objc/whisper.objc.xcodeproj/project.xcworkspace/xcuserdata
 
-extra/bench-gg.txt
+whisper.dir/extra/bench-gg.txt
 
-models/*.mlmodel
-models/*.mlmodelc
-models/*.mlpackage
-bindings/java/.gradle/
-bindings/java/.idea/
+whisper.dir/models/*.mlmodel
+whisper.dir/models/*.mlmodelc
+whisper.dir/models/*.mlpackage
+whisper.dir/bindings/java/.gradle/
+whisper.dir/bindings/java/.idea/
 .idea/
 
-benchmark_results.csv
-cmake-build-debug/
+whisper.dir/benchmark_results.csv
+whisper.dir/cmake-build-debug/
 .cxx/
 .gradle/
-local.properties
+whisper.dir/local.properties
