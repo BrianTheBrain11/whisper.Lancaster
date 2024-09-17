@@ -79,3 +79,4 @@ WhisperDLLTest/x64/Release/vc143.pdb
 *.pdb
 build_folder/examples/main/Release/main.exp
 *.tlog
+/build_folder/examples/main/main.dir/Debug/main.tlog

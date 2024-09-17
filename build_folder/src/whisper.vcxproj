@@ -87,7 +87,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\whisper.Lancaster\whisper.dir\src\.;G:\whisper.Lancaster\whisper.dir\src\..\include;G:\whisper.Lancaster\whisper.dir\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\whisper.Lancaster\whisper.dir\src\.;G:\whisper.Lancaster\whisper.dir\src\..\include;G:\whisper.Lancaster\whisper.dir\ggml\src\..\include;$(SolutionDir)ggml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -118,19 +118,8 @@
     <PreLinkEvent>
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message>Auto build dll exports</Message>
-      <Command>setlocal
-cd G:\whisper.Lancaster\build_folder\src
-if %errorlevel% neq 0 goto :cmEnd
-G:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E __create_def G:/whisper.Lancaster/build_folder/src/whisper.dir/Debug/exports.def G:/whisper.Lancaster/build_folder/src/whisper.dir/Debug//objects.txt
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\ggml\src\Debug\ggml.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
@@ -139,7 +128,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>G:/whisper.Lancaster/build_folder/src/Debug/whisper.lib</ImportLibrary>
-      <ModuleDefinitionFile>G:/whisper.Lancaster/build_folder/src/whisper.dir/Debug/exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(ProjectDir)whisper.dir\$(Configuration)\exports.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/Debug/whisper.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -149,7 +138,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\whisper.Lancaster\whisper.dir\src\.;G:\whisper.Lancaster\whisper.dir\src\..\include;G:\whisper.Lancaster\whisper.dir\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\whisper.Lancaster\whisper.dir\src\.;G:\whisper.Lancaster\whisper.dir\src\..\include;G:\whisper.Lancaster\whisper.dir\ggml\src\..\include;$(SolutionDir)ggml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -180,19 +169,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PreLinkEvent>
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message>Auto build dll exports</Message>
-      <Command>setlocal
-cd G:\whisper.Lancaster\build_folder\src
-if %errorlevel% neq 0 goto :cmEnd
-G:
-if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E __create_def G:/whisper.Lancaster/build_folder/src/whisper.dir/Release/exports.def G:/whisper.Lancaster/build_folder/src/whisper.dir/Release//objects.txt
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>..\ggml\src\Release\ggml.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
@@ -201,7 +179,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImportLibrary>G:/whisper.Lancaster/build_folder/src/Release/whisper.lib</ImportLibrary>
-      <ModuleDefinitionFile>G:/whisper.Lancaster/build_folder/src/whisper.dir/Release/exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(ProjectDir)whisper.dir\$(Configuration)\exports.def</ModuleDefinitionFile>
       <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/Release/whisper.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -333,78 +311,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="G:\whisper.Lancaster\whisper.dir\src\CMakeLists.txt">
-      <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SG:/whisper.Lancaster/whisper.dir -BG:/whisper.Lancaster/build_folder --check-stamp-file G:/whisper.Lancaster/build_folder/src/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">G:\whisper.Lancaster\build_folder\src\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SG:/whisper.Lancaster/whisper.dir -BG:/whisper.Lancaster/build_folder --check-stamp-file G:/whisper.Lancaster/build_folder/src/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">G:\whisper.Lancaster\build_folder\src\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SG:/whisper.Lancaster/whisper.dir -BG:/whisper.Lancaster/build_folder --check-stamp-file G:/whisper.Lancaster/build_folder/src/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">G:\whisper.Lancaster\build_folder\src\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SG:/whisper.Lancaster/whisper.dir -BG:/whisper.Lancaster/build_folder --check-stamp-file G:/whisper.Lancaster/build_folder/src/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">G:\whisper.Lancaster\build_folder\src\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
-    </CustomBuild>
+    <ClInclude Include="whisper-mel.hpp" />
+    <ClInclude Include="whisper.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="G:\whisper.Lancaster\whisper.dir\include\whisper.h" />
-    <ClCompile Include="G:\whisper.Lancaster\whisper.dir\src\whisper.cpp" />
-    <ClInclude Include="G:\whisper.Lancaster\whisper.dir\src\whisper-mel.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="G:\whisper.Lancaster\build_folder\ZERO_CHECK.vcxproj">
-      <Project>{21FD52A0-9F14-318B-AEF1-172E20C87F49}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
     <ProjectReference Include="G:\whisper.Lancaster\build_folder\ggml\src\ggml.vcxproj">
       <Project>{4F1C8D2E-ED21-3B23-9FB6-74447F3528ED}</Project>
       <Name>ggml</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="whisper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

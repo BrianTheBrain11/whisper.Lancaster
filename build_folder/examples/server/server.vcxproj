@@ -317,16 +317,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="G:\whisper.Lancaster\whisper.dir\examples\server\server.cpp" />
-    <ClInclude Include="G:\whisper.Lancaster\whisper.dir\examples\server\httplib.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="G:\whisper.Lancaster\build_folder\ZERO_CHECK.vcxproj">
-      <Project>{21FD52A0-9F14-318B-AEF1-172E20C87F49}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
     <ProjectReference Include="G:\whisper.Lancaster\build_folder\examples\common.vcxproj">
       <Project>{BC8B9697-47A7-3EBC-9615-4751D9C80428}</Project>
       <Name>common</Name>
@@ -339,6 +329,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{841F9D5D-5094-3333-8C7F-5F77025E5A23}</Project>
       <Name>whisper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="httplib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="server.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

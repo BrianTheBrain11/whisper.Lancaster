@@ -20,8 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LancasterWhisperAPI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Library Include="lib\LancasterWhisper.lib" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
-G:\whisper.Lancaster\whisper.dir\ggml\src\ggml.c;G:\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml.obj
-G:\whisper.Lancaster\whisper.dir\ggml\src\ggml-alloc.c;G:\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-alloc.obj
-G:\whisper.Lancaster\whisper.dir\ggml\src\ggml-backend.c;G:\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-backend.obj
-G:\whisper.Lancaster\whisper.dir\ggml\src\ggml-quants.c;G:\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-quants.obj
-G:\whisper.Lancaster\whisper.dir\ggml\src\ggml-aarch64.c;G:\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-aarch64.obj
+G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml-aarch64.c;G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-aarch64.obj
+G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml-alloc.c;G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-alloc.obj
+G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml-backend.c;G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-backend.obj
+G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml-quants.c;G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml-quants.obj
+G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.c;G:\Lancaster-Source\whisper.Lancaster\build_folder\ggml\src\ggml.dir\Debug\ggml.obj

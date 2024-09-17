@@ -60,13 +60,13 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\$(Platform)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main.dir\Debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LancasterWhisper</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\$(Platform)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main.dir\Release\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LancasterWhisper</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
@@ -122,13 +122,19 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/whisper.Lancaster/build_folder/examples/main/Debug/main.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/Debug/main.pdb</ProgramDataBaseFile>
+      <ImportLibrary>$(ProjectFile)$(OutDir)LancasterWhisper.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)main.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)LancasterWhisper.lib $(SolutionDir)..\..\FM\LancFM\lib
+xcopy /y $(OutDir)LancasterWhisper.dll $(SolutionDir)..\..\FM\lancFM\lib
+xcopy /y $(SolutionDir)bin\$(Configuration)\whisper.dll $(SolutionDir)..\..\FM\lancFM\lib
+xcopy /y $(SolutionDir)bin\$(Configuration)\ggml.dll $(SolutionDir)..\..\FM\lancFM\lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -168,13 +174,19 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/whisper.Lancaster/build_folder/examples/main/Release/main.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/Release/main.pdb</ProgramDataBaseFile>
+      <ImportLibrary>$(OutDir)main.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)main.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent>
+      <Command>xcopy /y $(OutDir)LancasterWhisper.lib $(SolutionDir)..\..\FM\LancFM\lib
+xcopy /y $(OutDir)LancasterWhisper.dll $(SolutionDir)..\..\FM\lancFM\lib
+xcopy /y $(SolutionDir)bin\$(Configuration)\whisper.dll $(SolutionDir)..\..\FM\lancFM\lib
+xcopy /y $(SolutionDir)bin\$(Configuration)\ggml.dll $(SolutionDir)..\..\FM\lancFM\lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
@@ -212,8 +224,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/whisper.Lancaster/build_folder/examples/main/MinSizeRel/main.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/MinSizeRel/main.pdb</ProgramDataBaseFile>
+      <ImportLibrary>$(OutDir)MinSizeRel/main.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)main.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -255,8 +267,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/whisper.Lancaster/build_folder/examples/main/RelWithDebInfo/main.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/whisper.Lancaster/build_folder/bin/RelWithDebInfo/main.pdb</ProgramDataBaseFile>
+      <ImportLibrary>$(OutDir)main.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)main.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -264,8 +276,8 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\whisper.dir\examples\common-sdl.cpp" />
-    <ClCompile Include="G:\whisper.Lancaster\whisper.dir\examples\main\main.cpp" />
+    <ClCompile Include="common-sdl.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="G:\whisper.Lancaster\build_folder\ZERO_CHECK.vcxproj">
@@ -288,8 +300,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common-sdl.h" />
     <ClInclude Include="Lancaster_Whisper_API.h" />
-    <ClInclude Include="main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
