@@ -6,11 +6,15 @@
 // ref: https://github.com/ggerganov/whisper.cpp/issues/171
 //
 
+#include "Lancaster_Whisper_API.h"
+#include "main.h"
+
 #include "common-sdl.h"
 #include "common.h"
 #include "whisper.h"
 #include "grammar-parser.h"
 
+#include <Windows.h>
 #include <sstream>
 #include <cassert>
 #include <cstdio>
@@ -24,7 +28,7 @@
 
 // command-line parameters
 struct whisper_params {
-    int32_t n_threads = std::min(4, (int32_t)std::thread::hardware_concurrency());
+    int32_t n_threads = (std::min)(4, (int32_t)std::thread::hardware_concurrency());
     int32_t prompt_ms = 5000;
     int32_t command_ms = 8000;
     int32_t capture_id = -1;
@@ -205,7 +209,7 @@ static std::string transcribe(
             const auto token = whisper_full_get_token_data(ctx, i, j);
 
             if (token.plog > 0.0f) exit(0);
-            logprob_min = std::min(logprob_min, token.plog);
+            logprob_min = (std::min)(logprob_min, token.plog);
             logprob_sum += token.plog;
             ++n_tokens;
         }
@@ -288,7 +292,7 @@ static int process_command_list(struct whisper_context* ctx, audio_async& audio,
             }
         }
 
-        max_len = std::max(max_len, (int)cmd.size());
+        max_len = (std::max)(max_len, (int)cmd.size());
     }
 
     fprintf(stderr, "%s: allowed commands [ tokens ]:\n", __func__);
@@ -389,7 +393,7 @@ static int process_command_list(struct whisper_context* ctx, audio_async& audio,
                 {
                     float max = -1e9;
                     for (int i = 0; i < (int)probs.size(); ++i) {
-                        max = std::max(max, logits[i]);
+                        max = (std::max)(max, logits[i]);
                     }
 
                     float sum = 0.0f;
@@ -683,8 +687,18 @@ static int process_general_transcription(struct whisper_context* ctx, audio_asyn
     return 0;
 }
 
-int main(int argc, char** argv) {
-    whisper_params params;
+int main(int argc, char** argv) 
+{
+
+    FILE* flog = 0;
+    flog = fopen("C:/test.log", "w");
+
+    if (AllocConsole())
+    {
+        freopen_s(&flog, "CONOUT$", "w", stdout);
+        SetConsoleTitle(("DCS Lancaster debug console"));
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    }    whisper_params params;
 
     if (whisper_params_parse(argc, argv, params) == false) {
         return 1;
@@ -783,4 +797,9 @@ int main(int argc, char** argv) {
     whisper_free(ctx);
 
     return ret_val;
+}
+
+LANCASTER_WHISPER_API int lancaster_whisper_init(int argc, char** argv)
+{
+    return main(argc, argv);
 }

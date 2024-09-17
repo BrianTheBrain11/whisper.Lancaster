@@ -70,3 +70,12 @@ build_folder/src/whisper.dir/Debug/whisper.vcxproj.FileListAbsolute.txt
 build_folder/ggml/src/ggml.dir/Debug/ggml.vcxproj.FileListAbsolute.txt
 build_folder/examples/main/main.dir/Debug/main.vcxproj.FileListAbsolute.txt
 build_folder/examples/common.dir/Debug/common.vcxproj.FileListAbsolute.txt
+*.class
+*.ipdb
+*.iobj
+WhisperDLLTest/x64/Release/WhisperDLLTest.vcxproj.FileListAbsolute.txt
+WhisperDLLTest/x64/Release/vc143.pdb
+*.recipe
+*.pdb
+build_folder/examples/main/Release/main.exp
+*.tlog
