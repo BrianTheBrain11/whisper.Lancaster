@@ -14,21 +14,20 @@ int main(int argc, char** argv)
 
 	lancaster_whisper_init(argc, argv);
 
-	std::queue<std::string>* queue = lancaster_whisper_allocate_command_queue();
+	std::queue<WhisperCommand*>* queue = lancaster_whisper_allocate_command_queue();
 
 	printf("Queue Length: %i\n", (int)queue->size());
 
 	while (true)
 	{
 		int i = 0;
-		for (i = 0; i < queue->size(); i++)
+		int size = queue->size();
+		for (i = 0; i < size; i++)
 		{
-			printf("Whisper text: %s", queue->front().c_str());
+			printf("Whisper text: %s", queue->front()->message.c_str());
 		}
-		for (int j = 0; j < i; j++)
-		{
-			queue->pop();
-		}
+
+		lancaster_whisper_clean_queue(size);
 
 	}
 	/*

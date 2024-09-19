@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>G:\SDL2-devel-2.30.6-VC\lib\x64;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)LancasterWhisper.lib</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);LancasterWhisper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +130,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>G:\SDL2-devel-2.30.6-VC\lib\x64;$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);LancasterWhisper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

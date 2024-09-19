@@ -4,12 +4,12 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>-m "G:\Lancaster-Source\whisper.Lancaster\build_folder\x64\Release\models\ggml-base.en.bin"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-m "G:\Lancaster-Source\whisper.Lancaster\build_folder\x64\Release\models\ggml-base.en.bin" -t 4 -ac 768</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>-m "G:\Lancaster-Source\whisper.Lancaster\build_folder\x64\Release\models\ggml-base.en.bin"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-m "G:\Lancaster-Source\whisper.Lancaster\build_folder\x64\Release\models\ggml-base.en.bin" -t 4 -ac 768</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>

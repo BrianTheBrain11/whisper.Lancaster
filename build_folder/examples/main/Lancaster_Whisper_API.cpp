@@ -26,7 +26,9 @@
 
 std::thread* whisper_thread;
 bool* close_thread;
-std::queue<std::string>* commandQueue;
+std::queue<WhisperCommand*>* commandQueue;
+bool ptt_onoff; // on true off false
+audio_async* audio;
 
 // command-line parameters
 struct whisper_params {
@@ -670,7 +672,10 @@ static int process_general_transcription(struct whisper_context * ctx, audio_asy
                         // cut the prompt from the decoded text
                         const std::string command = ::trim(txt.substr(best_len));
 
-                        commandQueue->push(command);
+                        WhisperCommand* api_command = new WhisperCommand();
+                        
+
+                        commandQueue->push(api_command);
 
                         fprintf(stdout, "%s: Command '%s%s%s', (t = %d ms)\n", __func__, "\033[1m", command.c_str(), "\033[0m", (int) t_ms);
                         
@@ -731,17 +736,17 @@ int main(int argc, char ** argv) {
 
     // init audio
 
-    audio_async audio(30*1000);
-    if (!audio.init(params.capture_id, WHISPER_SAMPLE_RATE)) {
+    audio = new audio_async(30*1000);
+    if (!audio->init(params.capture_id, WHISPER_SAMPLE_RATE)) {
         fprintf(stderr, "%s: audio.init() failed!\n", __func__);
         return 1;
     }
 
-    audio.resume();
+    audio->resume();
 
     // wait for 1 second to avoid any buffered noise
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    audio.clear();
+    audio->clear();
 
     int  ret_val = 0;
 
@@ -769,15 +774,15 @@ int main(int argc, char ** argv) {
 
     if (ret_val == 0) {
         if (!params.commands.empty()) {
-            ret_val = process_command_list(ctx, audio, params);
+            ret_val = process_command_list(ctx, *audio, params);
         } else if (!params.prompt.empty() && params.grammar_parsed.rules.empty()) {
-            ret_val = always_prompt_transcription(ctx, audio, params);
+            ret_val = always_prompt_transcription(ctx, *audio, params);
         } else {
-            ret_val = process_general_transcription(ctx, audio, params);
+            ret_val = process_general_transcription(ctx, *audio, params);
         }
     }
 
-    audio.pause();
+    audio->pause();
 
     whisper_print_timings(ctx);
     whisper_free(ctx);
@@ -800,12 +805,32 @@ int lancaster_whisper_shutdown()
     delete(whisper_thread);
     delete(close_thread);
     delete(commandQueue);
+    delete(audio);
 
     return 0;
 }
 
-std::queue<std::string>* lancaster_whisper_allocate_command_queue()
+std::queue<WhisperCommand*>* lancaster_whisper_allocate_command_queue()
 {
-    commandQueue = new std::queue<std::string>();
+    commandQueue = new std::queue<WhisperCommand*>();
     return commandQueue;
+}
+
+LANCASTER_WHISPER_API void lancaster_whisper_clean_queue(int n_numToClean)
+{
+    for (int i = 0; i < n_numToClean; i++)
+    {
+        delete(commandQueue->front());
+        commandQueue->pop();
+    }
+}
+
+LANCASTER_WHISPER_API bool lancaster_whisper_ptt_set(bool onoff)
+{
+    if (ptt_onoff)
+        audio->resume();
+    else
+        audio->pause();
+
+    return ptt_onoff;
 }
