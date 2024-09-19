@@ -1,5 +1,0 @@
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/MinSizeRel/ggml.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/MinSizeRel/ggml-alloc.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/MinSizeRel/ggml-backend.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/MinSizeRel/ggml-quants.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/MinSizeRel/ggml-aarch64.obj

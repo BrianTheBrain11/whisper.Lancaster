@@ -1,5 +1,0 @@
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/Debug/ggml.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/Debug/ggml-alloc.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/Debug/ggml-backend.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/Debug/ggml-quants.obj
-G:/whisper.Lancaster/build_folder/ggml/src/ggml.dir/Debug/ggml-aarch64.obj

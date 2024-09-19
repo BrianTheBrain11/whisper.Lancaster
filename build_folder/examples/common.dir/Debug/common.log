@@ -1,9 +1,0 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2165,5): warning : The referenced project 'G:\whisper.Lancaster\build_folder\ggml\src\ggml.vcxproj' does not exist.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2165,5): warning : The referenced project 'G:\whisper.Lancaster\build_folder\src\whisper.vcxproj' does not exist.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2165,5): warning : The referenced project 'G:\whisper.Lancaster\build_folder\ZERO_CHECK.vcxproj' does not exist.
-  grammar-parser.cpp
-  common-ggml.cpp
-  common.cpp
-G:\Lancaster-Source\whisper.Lancaster\build_folder\examples\common.h(299,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-  common.vcxproj -> G:\whisper.Lancaster\build_folder\examples\Debug\common.lib
