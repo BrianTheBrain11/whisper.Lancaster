@@ -80,3 +80,4 @@ WhisperDLLTest/x64/Release/vc143.pdb
 build_folder/examples/main/Release/main.exp
 *.tlog
 /build_folder/examples/main/main.dir/Debug/main.tlog
+build_folder/x64/Release/ggml-base.en.bin

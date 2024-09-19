@@ -1,6 +1,5 @@
-﻿  Building Custom Rule G:/whisper.Lancaster/whisper.dir/src/CMakeLists.txt
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets(2165,5): warning : The referenced project 'G:\whisper.Lancaster\build_folder\ggml\src\ggml.vcxproj' does not exist.
   whisper.cpp
-  Auto build dll exports
      Creating library G:/whisper.Lancaster/build_folder/src/Release/whisper.lib and object G:/whisper.Lancaster/build_folder/src/Release/whisper.exp
   whisper.vcxproj -> G:\whisper.Lancaster\build_folder\bin\Release\whisper.dll
   'pwsh.exe' is not recognized as an internal or external command,

@@ -24,6 +24,10 @@
 #include <vector>
 #include <map>
 
+std::thread* whisper_thread;
+bool* close_thread;
+std::queue<std::string>* commandQueue;
+
 // command-line parameters
 struct whisper_params {
     int32_t n_threads  = std::min(4, (int32_t) std::thread::hardware_concurrency());
@@ -571,8 +575,8 @@ static int process_general_transcription(struct whisper_context * ctx, audio_asy
     fprintf(stderr, "%s: general-purpose mode\n", __func__);
 
     // main loop
-    while (is_running) {
-        // handle Ctrl + C
+    while (is_running && !(*close_thread)) {
+        // handle Ctrl + C && external shutdown
         is_running = sdl_poll_events();
 
         // delay
@@ -666,7 +670,10 @@ static int process_general_transcription(struct whisper_context * ctx, audio_asy
                         // cut the prompt from the decoded text
                         const std::string command = ::trim(txt.substr(best_len));
 
+                        commandQueue->push(command);
+
                         fprintf(stdout, "%s: Command '%s%s%s', (t = %d ms)\n", __func__, "\033[1m", command.c_str(), "\033[0m", (int) t_ms);
+                        
                     }
 
                     fprintf(stdout, "\n");
@@ -780,5 +787,25 @@ int main(int argc, char ** argv) {
 
 int lancaster_whisper_init(int argc, char** argv)
 {
-    return 46;
+    close_thread = new bool(false);
+    whisper_thread = new std::thread(main, argc, argv);
+    return 0;
+}
+
+int lancaster_whisper_shutdown()
+{
+    close_thread = new bool(true);
+    whisper_thread->join();
+
+    delete(whisper_thread);
+    delete(close_thread);
+    delete(commandQueue);
+
+    return 0;
+}
+
+std::queue<std::string>* lancaster_whisper_allocate_command_queue()
+{
+    commandQueue = new std::queue<std::string>();
+    return commandQueue;
 }
