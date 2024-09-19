@@ -31,6 +31,9 @@ struct WhisperGameCommand : WhisperCommand
 // Initialize the Lancaster Whisper runtime. Takes program flags like an executable
 LANCASTER_WHISPER_API int lancaster_whisper_init(int argc, char** argv);
 
+// Initialize the Lancaster Whisper runtime. Takes a string and internally parses it
+LANCASTER_WHISPER_API int lancaster_whisper_init(std::string paramsToParse);
+
 // Shutdown the whisper thread and free its resources
 LANCASTER_WHISPER_API int lancaster_whisper_shutdown();
 

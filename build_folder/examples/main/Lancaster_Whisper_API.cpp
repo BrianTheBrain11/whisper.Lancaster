@@ -23,12 +23,16 @@
 #include <thread>
 #include <vector>
 #include <map>
+#include <iomanip>
 
 std::thread* whisper_thread;
 bool* close_thread;
 std::queue<WhisperCommand*>* commandQueue;
 bool ptt_onoff; // on true off false
 audio_async* audio;
+int argc;
+char** argv;
+
 
 // command-line parameters
 struct whisper_params {
@@ -797,6 +801,33 @@ int lancaster_whisper_init(int argc, char** argv)
     return 0;
 }
 
+int lancaster_whisper_init(std::string paramsToParse)
+{
+    std::string command_line = paramsToParse;
+    // Prepare variables to store the parsed arguments
+    std::vector<std::string> arguments;
+    std::stringstream ss(command_line);
+    std::string arg;
+    bool in_quotes = false;
+    std::string temp_arg;
+
+    // Parse the command line arguments
+    while (ss >> std::quoted(arg))
+    {
+        arguments.push_back(arg);
+    }
+
+    // Convert the vector of arguments into `char* argv[]`
+    argc = arguments.size();
+    argv = new char* [argc];
+
+    for (int i = 0; i < argc; ++i)
+    {
+        argv[i] = new char[arguments[i].size() + 1];
+        std::strcpy(argv[i], arguments[i].c_str());
+    }
+}
+
 int lancaster_whisper_shutdown()
 {
     close_thread = new bool(true);
@@ -805,6 +836,22 @@ int lancaster_whisper_shutdown()
     delete(whisper_thread);
     delete(close_thread);
     delete(commandQueue);
+
+    int queuesize = commandQueue->size();
+    for (int i = 0; i < queuesize; i++)
+    {
+        delete(commandQueue->front());
+        commandQueue->pop();
+    }
+
+
+    // Clean up the dynamically allocated memory
+    for (int i = 0; i < argc; ++i)
+    {
+        delete[] argv[i];
+    }
+    delete[] argv;
+
     delete(audio);
 
     return 0;
