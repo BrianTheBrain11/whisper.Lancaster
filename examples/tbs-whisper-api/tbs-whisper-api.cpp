@@ -24,6 +24,8 @@
 #include <vector>
 #include <map>
 
+std::thread* whisperThread;
+
 // command-line parameters
 struct whisper_params {
     int32_t n_threads = std::min(4, (int32_t)std::thread::hardware_concurrency());
@@ -791,5 +793,6 @@ int main(int argc, char** argv) {
 
 tbs_whisper_api int tbs_whisper_init(int argc, char** argv)
 {
-	return 0;
+    whisperThread = new std::thread(main, argc, argv);
+    return 1;
 }

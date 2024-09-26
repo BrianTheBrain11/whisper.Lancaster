@@ -3,7 +3,7 @@
 #ifdef tbs_whisper_api_EXPORTS
 #define tbs_whisper_api extern "C" __declspec(dllexport)
 #else
-#define tbs_whisper_api __declspec(dllimport)
+#define tbs_whisper_api extern "C" __declspec(dllimport)
 #endif
 
 
