@@ -1354,3 +1354,13 @@ if (BUILD_SHARED_LIBS)
     set_target_properties(ggml PROPERTIES POSITION_INDEPENDENT_CODE ON)
     target_compile_definitions(ggml PRIVATE GGML_SHARED GGML_BUILD)
 endif()
+
+set(TARGET ggml)
+set(COPY_OUTPUT_LOCATION "%HOMEDRIVE%%HOMEPATH%/Saved Games/DCS.openbeta/Mods/aircraft/Project-Lancaster/bin/")
+add_custom_command(
+    TARGET ${TARGET}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:${TARGET}> ${COPY_OUTPUT_LOCATION}
+    COMMENT "Copying output dll to ${COPY_OUTPUT_LOCATION}"
+)

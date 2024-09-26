@@ -146,3 +146,13 @@ if (BUILD_SHARED_LIBS)
     set_target_properties(whisper PROPERTIES POSITION_INDEPENDENT_CODE ON)
     target_compile_definitions(whisper PRIVATE WHISPER_SHARED WHISPER_BUILD)
 endif()
+
+set(COPY_OUTPUT_LOCATION "%HOMEDRIVE%%HOMEPATH%/Saved Games/DCS.openbeta/Mods/aircraft/Project-Lancaster/bin/")
+set (TARGET whisper)
+add_custom_command(
+    TARGET ${TARGET}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:${TARGET}> ${COPY_OUTPUT_LOCATION}
+    COMMENT "Copying output dll to ${COPY_OUTPUT_LOCATION}"
+)

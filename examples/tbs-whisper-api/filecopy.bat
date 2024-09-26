@@ -1,0 +1,1 @@
+xcopy /Y $(CMAKE_CURRENT_BINARY_DIR)tbs-whisper-api.dll "%HOMEDRIVE%%HOMEPATH%\Saved Games\DCS.openbeta\Mods\aircraft\Project-Lancaster\bin\"

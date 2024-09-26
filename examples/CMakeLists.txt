@@ -140,6 +140,11 @@ if (WHISPER_SDL2)
         set_target_properties(sycl PROPERTIES FOLDER "examples")
     endif()
 endif (WHISPER_SDL2)
+if (WHISPER_SDL2)
+    add_subdirectory(tbs-whisper-api)
+    set_target_properties(tbs-whisper-api PROPERTIES FOLDER "examples")
+endif (WHISPER_SDL2)
+
 endif()
 
 if (WHISPER_SDL2)
