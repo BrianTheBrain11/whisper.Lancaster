@@ -25,6 +25,8 @@
 #include <map>
 
 std::thread* whisperThread;
+std::queue<std::string*>* whisperQueue;
+bool whisperShutdown; // false while running
 
 // command-line parameters
 struct whisper_params {
@@ -485,8 +487,10 @@ static int always_prompt_transcription(struct whisper_context* ctx, audio_async&
     fprintf(stderr, "\n");
     fprintf(stderr, "%s: always-prompt mode\n", __func__);
 
+    whisperShutdown = false;
+
     // main loop
-    while (is_running) {
+    while (is_running && !whisperShutdown) {
         // handle Ctrl + C
         is_running = sdl_poll_events();
 
@@ -535,6 +539,7 @@ static int always_prompt_transcription(struct whisper_context* ctx, audio_async&
 
                 if ((sim > 0.7f) && (command.size() > 0)) {
                     fprintf(stdout, "%s: Command '%s%s%s', (t = %d ms)\n", __func__, "\033[1m", command.c_str(), "\033[0m", (int)t_ms);
+                    whisperQueue->push(new std::string(command));
                 }
 
                 fprintf(stdout, "\n");
@@ -575,7 +580,7 @@ static int process_general_transcription(struct whisper_context* ctx, audio_asyn
     fprintf(stderr, "%s: general-purpose mode\n", __func__);
 
     // main loop
-    while (is_running) {
+    while (is_running && !whisperShutdown) {
         // handle Ctrl + C
         is_running = sdl_poll_events();
 
@@ -674,6 +679,7 @@ static int process_general_transcription(struct whisper_context* ctx, audio_asyn
                         const std::string command = ::trim(txt.substr(best_len));
 
                         fprintf(stdout, "%s: Command '%s%s%s', (t = %d ms)\n", __func__, "\033[1m", command.c_str(), "\033[0m", (int)t_ms);
+                        whisperQueue->push(new std::string(command));
                     }
 
                     fprintf(stdout, "\n");
@@ -795,4 +801,37 @@ tbs_whisper_api int tbs_whisper_init(int argc, char** argv)
 {
     whisperThread = new std::thread(main, argc, argv);
     return 1;
+}
+
+tbs_whisper_api int tbs_whisper_init_with_string(std::string)
+{
+    //whisperThread = new std::thread(main, argc, argv);
+    return 1;
+}
+
+tbs_whisper_api void tbs_whisper_shutdown()
+{
+    whisperShutdown = true;
+    whisperThread->join();
+    delete(whisperThread);
+
+    int size = whisperQueue->size();
+    for (int i = 0; i < size; i++)
+    {
+        delete(whisperQueue->front());
+        whisperQueue->pop();
+    }
+    delete(whisperQueue);
+}
+
+tbs_whisper_api bool tbs_whisper_is_running()
+{
+    return !whisperShutdown;
+}
+
+tbs_whisper_api std::queue<std::string*>* tbs_whisper_allocate_queue()
+{
+    whisperQueue = new std::queue<std::string*>();
+    whisperQueue->push(new std::string("Whisper Starting Up"));
+    return whisperQueue;
 }
